@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    max-width: 600px;
+
+}
+
+.container {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+}
+
+.video-slider {
+    width: 550px;
+    position: relative;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.play-button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    cursor: pointer;
+}
+
+.slider-items {
+    position: absolute;
+    /* width: 350px;
+    height: 550px; */
+    max-width: 350px;
+    max-height: 550px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.slider-items video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-items.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) rotateY(0deg) scale(1);
+    z-index: 3;
+}
+
+.slider-items.left-neighbor {
+    visibility: visible;
+    opacity: 0.2;
+    transform: translate(-100%, -50%) rotateY(30deg) scale(0.85);
+    rotate: -2deg;
+    height: 480px;
+    z-index: 0;
+}
+@media screen and (max-width: 768px) {
+    .slider-items.left-neighbor {
+        visibility: visible;
+        opacity: 0.2;
+        transform: translate(-100%, -50%) rotateY(30deg) scale(0.85);
+        rotate: -2deg;
+        height: 385px;
+        z-index: 0;
+    }
+    .slider-items.right-neighbor {
+        visibility: visible;
+        opacity: 0.2;
+        transform: translate(0%, -50%) rotateY(-30deg) scale(0.85);
+        height: 385px !important;
+        rotate: 2deg;
+        z-index: 0;
+    }
+    .container {
+        height: 500px;
+    }
+
+}
+
+.slider-items.right-neighbor {
+    visibility: visible;
+    opacity: 0.2;
+    transform: translate(0%, -50%) rotateY(-30deg) scale(0.85);
+    height: 480px;
+    rotate: 2deg;
+    z-index: 0;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.arrow:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.arrow svg {
+    width: 24px;
+    height: 24px;
+    stroke: black;
+}
+
+.arrow-left {
+    left: 40px;
+}
+
+.arrow-right {
+    right: 40px;
+}
+.hooks-concontainer{
+    overflow: auto;   /* Zorg ervoor dat scrollen mogelijk is als de inhoud breder is dan de container */
+    white-space: nowrap;
+    max-width: 400px; 
+    overflow-x: auto;   /* Zorg ervoor dat scrollen mogelijk is als de inhoud breder is dan de container */
+    white-space: nowrap;
+}
+.hooks {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+    border-radius: 50px;
+    background-color: rgb(238, 238, 238);
+    padding:4px;
+   
+}
+
+.hook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px 20px;
+    height: 100%;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.5s ease;
+
+}
+.hook.background{
+    background-color: white;
+}
+
+.hook p {
+    font-size: 14px;
+}
